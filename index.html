@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Cidadania Digital: Desinformação e Deepfakes</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1>Cidadania Digital & IA</h1>
+            <button id="toggle-dark-mode" aria-label="Alternar modo escuro">Modo Escuro</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="introducao">
+            <h2>O Impacto das Deepfakes na Sociedade</h2>
+            <p>Com o avanço da Inteligência Artificial, a criação de vídeos, áudios e imagens falsas extremamente realistas—conhecidas como <strong>deepfakes</strong>—tornou-se um grande desafio. Essas mídias manipuladas são usadas para espalhar desinformação automatizada, prejudicando a confiança nas instituições e a segurança digital dos cidadãos.</p>
+        </section>
+
+        <section id="guia-dicas">
+            <h2>Como identificar uma Mídia Manipulada?</h2>
+            <p>Fique atento aos pequenos detalhes que os algoritmos de IA ainda têm dificuldade de replicar perfeitamente:</p>
+            <div class="cards-container">
+                <div class="card">
+                    <h3>Piscar de olhos</h3>
+                    <p>Muitas deepfakes mostram pessoas que piscam de forma não natural ou que simplesmente não piscam.</p>
+                </div>
+                <div class="card">
+                    <h3>Falhas nas Bordas</h3>
+                    <p>Preste atenção em borrões perto das orelhas, cabelos e no contorno do rosto do indivíduo.</p>
+                </div>
+                <div class="card">
+                    <h3>Áudio Dessincronizado</h3>
+                    <p>O movimento dos lábios muitas vezes não condiz perfeitamente com o som da fala emitida.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz-interativo">
+            <h2>Quiz Anti-Desinformação</h2>
+            <p>Teste suas habilidades! Se você receber um vídeo bombástico de um político dizendo algo absurdo em uma rede social nova, qual é a primeira atitude correta?</p>
+            
+            <form id="form-quiz">
+                <div class="options-group">
+                    <label class="option-label">
+                        <input type="radio" name="quiz-answer" value="errada1"> Compartilhar imediatamente nos grupos de família para alertar a todos.
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="quiz-answer" value="correta"> Pesquisar em veículos de imprensa confiáveis e agências de checagem se o vídeo é real.
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="quiz-answer" value="errada2"> Apenas curtir o vídeo e comentar criticando o político, sem checar a fonte.
+                    </label>
+                </div>
+                <button type="submit" id="btn-verificar">Verificar Resposta</button>
+            </form>
+            
+            <div id="resultado-quiz" class="hidden"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Portal Cidadania Digital. Desenvolvido como projeto de conscientização comunitária.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
