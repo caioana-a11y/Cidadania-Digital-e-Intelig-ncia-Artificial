@@ -1,46 +1,72 @@
-// Aguarda o carregamento do DOM para evitar erros de execução
-document.addEventListener("DOMContentLoaded", function () {
+// Banco de dados de perguntas do quiz
+const questions = [
+    {
+        text: "Usar Inteligência Artificial para gerar um trabalho de escola inteiro e entregar como se fosse seu é ético.",
+        answer: false,
+        feedback: "Incorreto! Isso é plágio. O correto é usar a IA para brainstorming ou entender conceitos, criando seu próprio texto."
+    },
+    {
+        text: "Antes de compartilhar uma notícia alarmante gerada por IA ou sobre IA, devemos checar em fontes confiáveis.",
+        answer: true,
+        feedback: "Correto! Evitar a propagação de desinformação (fake news) é um pilar essencial da cidadania digital."
+    },
+    {
+        text: "Colocar fotos de outras pessoas sem permissão em ferramentas de IA para criar montagens engraçadas é uma boa prática.",
+        answer: false,
+        feedback: "Incorreto! Isso viola a privacidade, o direito de imagem e pode se configurar como cyberbullying."
+    },
+    {
+        text: "Ferramentas de IA podem apresentar respostas erradas (alucinações), por isso devemos sempre revisar o que elas geram.",
+        answer: true,
+        feedback: "Excelente! IAs cometem erros. O pensamento crítico do cidadão digital é fundamental para filtrar essas falhas."
+    }
+];
+
+let currentQuestionIndex = 0;
+let score = 0;
+let canAnswer = true;
+
+// Elementos do DOM
+const questionTextEl = document.getElementById("question-text");
+const scoreEl = document.getElementById("score");
+const feedbackEl = document.getElementById("feedback");
+
+// Inicializar o jogo
+function loadQuestion() {
+    canAnswer = true;
+    feedbackEl.textContent = "";
+    feedbackEl.style.color = "initial";
     
-    // --- 1. Funcionalidade: Modo Escuro (Acessibilidade) ---
-    const btnDarkMode = document.getElementById("toggle-dark-mode");
+    if (currentQuestionIndex < questions.length) {
+        questionTextEl.textContent = questions[currentQuestionIndex].text;
+    } else {
+        // Fim de jogo
+        questionTextEl.textContent = `Parabéns! Você completou o desafio. Sua pontuação final foi: ${score}/${questions.length}`;
+        document.querySelector(".game-buttons").style.display = "none";
+    }
+}
+
+// Validar a resposta do usuário
+function checkAnswer(userChoice) {
+    if (!canAnswer) return; // Impede cliques múltiplos rápidos
+    canAnswer = false;
+
+    const currentQuestion = questions[currentQuestionIndex];
     
-    btnDarkMode.addEventListener("click", function () {
-        // Altera a classe no body para disparar as variáveis CSS modificadas
-        document.body.classList.toggle("dark-mode");
-        
-        // Atualiza o texto do botão para melhor experiência do usuário
-        if (document.body.classList.contains("dark-mode")) {
-            btnDarkMode.textContent = "Modo Claro";
-        } else {
-            btnDarkMode.textContent = "Modo Escuro";
-        }
-    });
+    if (userChoice === currentQuestion.answer) {
+        score++;
+        scoreEl.textContent = score;
+        feedbackEl.textContent = "✓ Acertou! " + currentQuestion.feedback;
+        feedbackEl.style.color = "var(--primary-color)";
+    } else {
+        feedbackEl.textContent = "✗ Errou! " + currentQuestion.feedback;
+        feedbackEl.style.color = "var(--danger)";
+    }
 
-    // --- 2. Funcionalidade: Validação Dinâmica do Quiz ---
-    const formQuiz = document.getElementById("form-quiz");
-    const containerResultado = document.getElementById("resultado-quiz");
+    // Avança para a próxima pergunta após 3.5 segundos
+    currentQuestionIndex++;
+    setTimeout(loadQuestion, 3500);
+}
 
-    formQuiz.addEventListener("submit", function (evento) {
-        // Evita que a página recarregue ao submeter o formulário
-        evento.preventDefault();
-
-        // Captura a opção selecionada usando o nome do grupo de inputs radio
-        const respostaSelecionada = formQuiz.elements["quiz-answer"].value;
-
-        // Validação se o usuário clicou sem selecionar nenhuma opção
-        if (!respostaSelecionada) {
-            containerResultado.textContent = "Por favor, selecione uma das alternativas antes de verificar!";
-            containerResultado.className = "erro"; // Aplica estilo de erro do CSS
-            return;
-        }
-
-        // Processamento das variáveis e exibição da resposta na tela (Manipulação de DOM)
-        if (respostaSelecionada === "correta") {
-            containerResultado.textContent = "Parabéns! Resposta Correta. Verificar fontes oficiais e agências de checagem é o passo mais seguro para combater a desinformação em massa.";
-            containerResultado.className = "acerto"; // Aplica classe verde de acerto
-        } else {
-            containerResultado.textContent = "Resposta Incorreta. Lembre-se: compartilhar sem checar ou apenas engajar com comentários negativos aumenta o alcance da desinformação (efeito algoritmo). Sempre cheque antes!";
-            containerResultado.className = "erro"; // Aplica classe vermelha de erro
-        }
-    });
-});
+// Inicia a primeira pergunta ao carregar a página
+window.onload = loadQuestion;
