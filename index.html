@@ -3,70 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Cidadania Digital: Desinformação e Deepfakes</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Cidadania Digital & IA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <header>
-        <div class="header-container">
-            <h1>Cidadania Digital & IA</h1>
-            <button id="toggle-dark-mode" aria-label="Alternar modo escuro">Modo Escuro</button>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fa-solid fa-user-shield"></i> Code<span>Ethics</span>
+            </div>
+            <nav>
+                <a href="#conceito">Conceito</a>
+                <a href="#pilares">Pilares</a>
+                <a href="#jogo">Desafio Quiz</a>
+            </nav>
         </div>
     </header>
 
-    <main>
-        <section id="introducao">
-            <h2>O Impacto das Deepfakes na Sociedade</h2>
-            <p>Com o avanço da Inteligência Artificial, a criação de vídeos, áudios e imagens falsas extremamente realistas—conhecidas como <strong>deepfakes</strong>—tornou-se um grande desafio. Essas mídias manipuladas são usadas para espalhar desinformação automatizada, prejudicando a confiança nas instituições e a segurança digital dos cidadãos.</p>
+    <main class="container">
+        <section class="hero">
+            <h1>Cidadania Digital na Era da <span class="gradient-text">Inteligência Artificial</span></h1>
+            <p>Navegar na web mudou. Com a IA criando e moldando o mundo real, a nossa responsabilidade online precisa evoluir. Você está pronto para ser um cidadão consciente?</p>
+            <a href="#jogo" class="btn">Jogar o Desafio</a>
         </section>
 
-        <section id="guia-dicas">
-            <h2>Como identificar uma Mídia Manipulada?</h2>
-            <p>Fique atento aos pequenos detalhes que os algoritmos de IA ainda têm dificuldade de replicar perfeitamente:</p>
-            <div class="cards-container">
-                <div class="card">
-                    <h3>Piscar de olhos</h3>
-                    <p>Muitas deepfakes mostram pessoas que piscam de forma não natural ou que simplesmente não piscam.</p>
-                </div>
-                <div class="card">
-                    <h3>Falhas nas Bordas</h3>
-                    <p>Preste atenção em borrões perto das orelhas, cabelos e no contorno do rosto do indivíduo.</p>
-                </div>
-                <div class="card">
-                    <h3>Áudio Dessincronizado</h3>
-                    <p>O movimento dos lábios muitas vezes não condiz perfeitamente com o som da fala emitida.</p>
-                </div>
+        <section id="conceito" class="card-section">
+            <div class="info-box">
+                <h2>O que é essa conexão?</h2>
+                <p>A <strong>Cidadania Digital</strong> é o uso consciente, ético e seguro da tecnologia. Quando somamos a <strong>Inteligência Artificial</strong> a isso, o desafio dobra: precisamos aprender a identificar Deepfakes, entender como algoritmos usam nossos dados e usar ferramentas de IA de forma honesta e produtiva.</p>
             </div>
         </section>
 
-        <section id="quiz-interativo">
-            <h2>Quiz Anti-Desinformação</h2>
-            <p>Teste suas habilidades! Se você receber um vídeo bombástico de um político dizendo algo absurdo em uma rede social nova, qual é a primeira atitude correta?</p>
-            
-            <form id="form-quiz">
-                <div class="options-group">
-                    <label class="option-label">
-                        <input type="radio" name="quiz-answer" value="errada1"> Compartilhar imediatamente nos grupos de família para alertar a todos.
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="quiz-answer" value="correta"> Pesquisar em veículos de imprensa confiáveis e agências de checagem se o vídeo é real.
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="quiz-answer" value="errada2"> Apenas curtir o vídeo e comentar criticando o político, sem checar a fonte.
-                    </label>
+        <section id="pilares" class="grid-pilares">
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+                <h3>Ética em IA</h3>
+                <p>Não use IAs para plagiar trabalhos ou criar imagens falsas que prejudiquem outras pessoas.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-lock"></i></div>
+                <h3>Privacidade</h3>
+                <p>Cuidado com os dados pessoais e fotos que você insere em prompts de ferramentas públicas de IA.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <h3>Pensamento Crítico</h3>
+                <p>Nem tudo que a IA gera é verdade. Sempre verifique os fatos em fontes confiáveis.</p>
+            </div>
+        </section>
+
+        <section id="jogo" class="game-container">
+            <div class="game-header">
+                <h2><i class="fa-solid fa-gamepad"></i> Jogo: Fato ou Fake da IA</h2>
+                <p>Analise a afirmação e decida se a atitude condiz com um bom cidadão digital na era da IA!</p>
+            </div>
+
+            <div id="quiz-box">
+                <div class="score-board">Pontuação: <span id="score">0</span></div>
+                <p id="question-text" class="question">Carregando pergunta...</p>
+                
+                <div class="game-buttons">
+                    <button class="btn btn-true" onclick="checkAnswer(true)">Fato (Ético)</button>
+                    <button class="btn btn-false" onclick="checkAnswer(false)">Fake (Incorreto)</button>
                 </div>
-                <button type="submit" id="btn-verificar">Verificar Resposta</button>
-            </form>
-            
-            <div id="resultado-quiz" class="hidden"></div>
+                <p id="feedback" class="feedback-text"></p>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Portal Cidadania Digital. Desenvolvido como projeto de conscientização comunitária.</p>
+        <p>&copy; 2026 - Consciência Digital & IA. Feito para Navegadores do Futuro.</p>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
